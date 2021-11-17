@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF7
+namespace WPF8
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -29,18 +29,17 @@ namespace WPF7
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string fontName = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+            
             if (textBox != null)
             {
-                textBox.FontFamily = new FontFamily(fontName);
+                textBox.FontFamily = new FontFamily(((sender as ComboBox).SelectedItem).ToString());
             }
         }
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            double fontSize = Convert.ToDouble(((sender as ComboBox).SelectedItem as TextBlock).Text);
             if (textBox != null)
             {
-                textBox.FontSize = fontSize;
+                textBox.FontSize = Convert.ToDouble((sender as ComboBox).SelectedItem);
             }
         }
 
