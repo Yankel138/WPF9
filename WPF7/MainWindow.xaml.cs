@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF8
+namespace WPF9
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -25,11 +25,33 @@ namespace WPF8
         public MainWindow()
         {
             InitializeComponent();
+            List<string> styles = new List<string>() { "Светлая тема", "Темная тема" };
+            styleBox.ItemsSource = styles;
+            styleBox.SelectionChanged += ThemeChange;
+            styleBox.SelectedIndex = 0;
+        }
+
+        private void ThemeChange(object sender, SelectionChangedEventArgs e)
+        {
+            radioBlack.Content = "Черный";
+            int styleIndex = styleBox.SelectedIndex;
+            Uri uri = new Uri("Light.xaml", UriKind.Relative);
+            Uri dic = new Uri("Dictionary1.xaml", UriKind.Relative);
+            if (styleIndex == 1)
+            {
+                uri = new Uri("Dark.xaml", UriKind.Relative);
+                radioBlack.Content = "Белый";
+            }
+            ResourceDictionary resource1 = Application.LoadComponent(uri) as ResourceDictionary;
+            ResourceDictionary resource2 = Application.LoadComponent(dic) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resource1);
+            Application.Current.Resources.MergedDictionaries.Add(resource2);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             if (textBox != null)
             {
                 textBox.FontFamily = new FontFamily(((sender as ComboBox).SelectedItem).ToString());
@@ -53,6 +75,8 @@ namespace WPF8
                     textBox.Foreground = new SolidColorBrush(Colors.Red);
                 else if (textColor == "Зеленый")
                     textBox.Foreground = new SolidColorBrush(Colors.Green);
+                else if (textColor == "Белый")
+                    textBox.Foreground = new SolidColorBrush(Colors.White);
                 else
                     textBox.Foreground = new SolidColorBrush(Colors.Black);
             }

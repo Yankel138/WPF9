@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="WindowStyle">
+        <Setter Property="ItemsControl.Background" Value="LightBlue"/>
+        <Setter Property="ItemsControl.Foreground" Value="Black"/>
+    </Style>
+    <Style x:Key="TextBoxStyle" BasedOn="{StaticResource WindowStyle}">
+        <Setter Property="TextBox.Margin" Value="5"/>
+        <Setter Property="TextBox.Padding" Value="5"/>
+        <Setter Property="TextBox.Background" Value="White"/>
+        <Setter Property="TextBox.Foreground" Value="Black"/>
+    </Style>
+
+    <Style TargetType="ToolBar" BasedOn="{StaticResource WindowStyle}">
+        <Setter Property="ToolBar.Background" Value="LightBlue"/>
+        <Setter Property="ToolBar.Foreground" Value="Black"/>
+    </Style>
+    <Style TargetType="ToolBarTray" BasedOn="{StaticResource WindowStyle}">
+        <Setter Property="ToolBarTray.Background" Value="LightBlue"/>
+    </Style>
+
+</ResourceDictionary>
