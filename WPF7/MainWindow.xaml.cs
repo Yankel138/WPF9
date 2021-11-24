@@ -25,7 +25,7 @@ namespace WPF9
         public MainWindow()
         {
             InitializeComponent();
-            List<string> styles = new List<string>() { "Светлая тема", "Темная тема" };
+            List<string> styles = new List<string>() { "Светлая тема", "Темная тема"};
             styleBox.ItemsSource = styles;
             styleBox.SelectionChanged += ThemeChange;
             styleBox.SelectedIndex = 0;
